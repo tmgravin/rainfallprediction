@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Use - Rainfall Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* General styles */
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Main content styles */
+      main {
+        margin: 1em;
+      }
+
+      /* Footer styles */
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="flex w-full bg-black px-20 py-4 justify-between">
+      <a href="{{ url_for('home') }}"
+        ><h1 class="text-2xl font-medium text-white">Rainfall Prediction</h1></a
+      >
+      <ul class="flex space-x-6 justify-end text-teal-1000">
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('home') }}">Home</a>
+        </li>
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('about') }}">About</a>
+        </li>
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('developer') }}">Developers</a>
+        </li>
+        {% if 'email' not in session %}
+        <button
+          class="login-button mx-2 cursor-pointer text-white bg-cyan-500 px-4 py-1 rounded-2xl hover:text-white hover:bg-cyan-700"
+        >
+          <a href="{{ url_for('login')}}">Login</a>
+        </button>
+        {% else %}
+
+        <button
+          class="logout-button mx-2 cursor-pointer text-white bg-cyan-500 px-4 py-1 rounded-2xl hover:text-white hover:bg-cyan-700"
+        >
+          <a href="{{ url_for('logout')}}">Logout</a>
+        </button>
+
+        {% endif %}
+      </ul>
+    </nav>
+    <main>
+      <h1 class="text-2xl font-bold">Terms of Use</h1>
+      <p>
+        These terms and conditions ("Agreement") governs the use of the Rainfall
+        Prediction website ("Website") and the services ("Services") provided by
+        the Website. By using the Website or the Services, you agree to be bound
+        by this Agreement. If you do not agree to be bound by this Agreement, do
+        not use the Website or the Services.
+      </p>
+      <h2 class="text-xl font-bold">Use of the Website and Services</h2>
+      <p>
+        You may use the Website and the Services only for lawful purposes and in
+        accordance with this Agreement. You agree not to use the Website or the
+        Services:
+      </p>
+      <ul class="list-disc m-2">
+        <li>
+          in any way that violates any applicable federal, state, local, or
+          international law or regulation;
+        </li>
+        <li>
+          for the purpose of exploiting, harming, or attempting to exploit or
+          harm minors in any way by exposing them to inappropriate content,
+          asking for personally identifiable information, or otherwise;
+        </li>
+        <li>
+          to transmit, or procure the sending of, any advertising or promotional
+          material, including any "junk mail," "chain letter," "spam," or any
+          other similar solicitation;
+        </li>
+        <li>
+          to impersonate or attempt to impersonate the Website, a Website
+          employee, another user, or any other person or entity;
+        </li>
+        <li>
+          to engage in any other conduct that restricts or inhibits anyone's use
+          or enjoyment of the Website, or which, as determined by us, may harm
+          the Website or users of the Website or expose them to liability.
+        </li>
+      </ul>
+      <h2 class="text-xl font-bold">Intellectual Property Rights</h2>
+      <p>
+        The Website and its entire contents, features, and functionality
+        (including but not limited to all information, software, text, displays,
+        images, video, and audio, and the design, selection, and arrangement
+        thereof), are owned by the Rainfall Prediction team, its licensors, or
+        other providers of such material and are protected by United States and
+        international copyright, trademark, patent, trade secret, and other
+        intellectual property or proprietary rights laws.
+      </p>
+      <h2 class="text-xl font-bold">Disclaimer of Warranties</h2>
+      <p>
+        The Website and the Services are provided on an "as is" and "as
+        available" basis. The Rainfall Prediction team makes no representations
+        or warranties of any kind, express or implied, as to the operation of
+        the Website or the Services or the information, content, materials, or
+        products included on the Website or made available through the Services.
+        You expressly agree that your use of the Website and the Services is at
+        your sole risk.
+      </p>
+      <h2 class="text-xl font-bold">Limitation of Liability</h2>
+      <p>
+        In no event shall the Rainfall Prediction team, its affiliates, or their
+        respective directors, officers, employees, agents, or licensors be
+        liable for any direct, indirect, incidental, punitive, special, or
+        consequential damages arising out of or in any way connected with your
+        use of the Website or the Services, whether based on contract, tort,
+        strict liability, or any other theory of liability, and even if the
+        Rainfall Prediction team has been advised of the possibility of such
+        damages. In no event shall the Rainfall Prediction team's total
+        liability to you for all damages, losses, and causes of action (whether
+        in contract, tort, strict liability, or any other theory of liability)
+        exceed the amount paid by you, if any, for accessing the Website or the
+        Services.
+      </p>
+      <h2>Indemnification</h2>
+      <p>
+        You agree to indemnify, defend, and hold harmless the Rainfall
+        Prediction team, its affiliates, and their respective directors,
+        officers, employees, agents, and licensors from and against all claims,
+        liabilities, damages, judgments, awards, losses, costs, expenses, or
+        fees (including reasonable attorneys' fees) arising out of or in any way
+        connected with your use of the Website or the Services or your violation
+        of this Agreement.
+      </p>
+      <h2 class="text-xl font-bold">Termination</h2>
+      <p>
+        The Rainfall Prediction team may terminate or suspend your access to all
+        or part of the Website or the Services at any time, with or without
+        cause, with or without notice, effective immediately. If you wish to
+        terminate this Agreement or your Rainfall Prediction account (if you
+        have one), you may simply discontinue using the Website and the
+        Services.
+      </p>
+      <h2 class="text-xl font-bold">Changes to this Agreement</h2>
+      <p>
+        The Rainfall Prediction team reserves the right, in its sole discretion,
+        to modify or replace any part of this Agreement at any time. It is your
+        responsibility to check this Agreement periodically for changes. Your
+        continued use of or access to the Website or the Services following the
+        posting of any changes to this Agreement constitutes acceptance of those
+        changes. The Rainfall Prediction team may also, in the future, offer new
+        services and/or features through the Website and the Services
+        (including, the release of new tools and resources). Such new features
+        and/or services shall be subject to the terms and conditions of this
+        Agreement.
+      </p>
+    </main>
+    <footer>
+      <p>© 2023 Rainfall Prediction</p>
+    </footer>
+  </body>
+</html>

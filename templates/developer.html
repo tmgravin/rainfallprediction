@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://kit.fontawesome.com/187229e809.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rainfall prediction</title>
+  </head>
+
+  <body class="bg-zinc-700 text-white">
+    <nav class="flex w-full bg-transparent px-20 py-4 justify-between">
+<a href="{{ url_for('home') }}"
+        ><h1 class="text-2xl font-medium text-white">Rainfall Prediction</h1></a
+      >
+      <ul class="flex space-x-6 justify-end text-teal-1000">
+        <li
+          class="mx-2 duration-500 group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 cursor-pointer text-white hover:text-cyan-500"
+        >
+          <a href="{{ url_for('home') }}">Home</a>
+        </li>
+        <li
+          class="mx-2 duration-500 group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 cursor-pointer text-white hover:text-cyan-500"
+        >
+          <a href="{{ url_for('about') }}">About</a>
+        </li>
+        <li
+          class="mx-2 duration-500 group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 cursor-pointer text-white hover:text-cyan-500"
+        >
+          <a href="{{ url_for('developer') }}">Developers</a>
+        </li>
+        {% if 'email' not in session %}
+        <button
+          class="login-button mx-2 cursor-pointer text-white bg-cyan-500 px-4 py-1 rounded-2xl hover:text-white hover:bg-cyan-700"
+        >
+          <a href="{{ url_for('login')}}">Login</a>
+        </button>
+        {% else %}
+        <button
+          class="logout-button mx-2 cursor-pointer text-white bg-cyan-500 px-4 py-1 rounded-2xl hover:text-white hover:bg-cyan-700"
+        >
+          <a href="{{ url_for('logout')}}">Logout</a>
+        </button>
+        {% endif %}
+      </ul>
+    </nav>
+    <p class="text-white mx-20">{{ session['username'] }}</p>
+    <div class="py-5 text-center">
+      <h1 class="text-4xl w-96 mx-auto leading-normal mb-10">Developers</h1>
+      <hr class="w-1/5 mx-auto" />
+    </div>
+    <div class="flex max-w-4xl mx-auto gap-8 group">
+      <div
+        class="bg-white/10 duration-500 group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 cursor-pointer p-8 rounded-2xl"
+      >
+        <img
+          src="../static/images/resham.jpg"
+          alt="Resham"
+          class="mx-auto rounded-full w-32 h-32"
+        />
+        <h4 class="uppercase text-xl font-bold">Resham Parajuli</h4>
+        <p class="text-sm leading-7 my-3 font-light opacity-50">
+          College of Applied Business<br />
+          Bsc.CSIT 7<sup>th</sup>sem<br />
+          Sukedhara,Kathmandu<br />
+          reshamparajuli9@gmail.com
+        </p>
+        <div class="py-2 grid grid-flow-col gap-2 pb-2 px-6">
+          <a href="https://www.facebook.com/reshamparajuli98" target="_blank">
+  <i class="fab fa-facebook"></i>
+</a>
+          <i class="fa-brands fa-linkedin"></i>
+          <i class="fa-brands fa-github"></i>
+        </div>
+      </div>
+      <div
+        class="bg-white/10 duration-500 group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 cursor-pointer p-8 rounded-xl"
+      >
+        <img
+          src="../static/images/rabin.jpg"
+          alt="Rabin"
+          class="mx-auto rounded-full w-32 h-32"
+        />
+        <h4 class="uppercase text-xl font-bold">Rabin Tamang</h4>
+        <p class="text-sm leading-7 my-3 font-light opacity-50">
+          College of Applied Business<br />
+          Bsc.CSIT 7<sup>th</sup>sem<br />
+          Bhaktapur<br />
+          tmgrabin86@gmail.com
+        </p>
+        <div class="py-2 grid grid-flow-col gap-2 pb-2 px-6">
+          <a href="https://www.facebook.com/chyngba.tamang.524" target="_blank">
+  <i class="fab fa-facebook"></i>
+</a>
+          </i>
+          <i class="fa-brands fa-linkedin"></i>
+          <i class="fa-brands fa-github"></i>
+        </div>
+      </div>
+      <div
+        class="bg-white/10 duration-500 group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 cursor-pointer p-8 rounded-xl"
+      >
+        <img
+          src="../static/images/govinda.jpg"
+          alt="govinda"
+          class="mx-auto rounded-full w-32 h-32"
+        />
+        <h4 class="uppercase text-xl font-bold">Govinda Pandey</h4>
+        <p class="text-sm leading-7 my-3 font-light opacity-50">
+          College of Applied Business<br />
+          Bsc.CSIT 7<sup>th</sup>sem<br />
+          Maitidevi,Kathmandu<br />
+          govindapandey111@gmail.com
+        </p>
+        <div class="py-2 grid grid-flow-col gap-2 pb-2 px-6">
+         <a href="https://www.facebook.com/govinda.pandey.353/" target="_blank">
+  <i class="fab fa-facebook"></i>
+</a>
+          <i class="fa-brands fa-linkedin"></i>
+          <i class="fa-brands fa-github"></i>
+        </div>
+      </div>
+    </div>
+    <footer
+      class="bottom-0 fixed left-0 right-0 bg-gray-900 text-white py-4 px-10 flex justify-between items-center"
+    >
+      <p class="text-sm">&copy; 2023 Rainfall Prediction</p>
+      <ul class="flex space-x-4">
+        <li><a href="{{url_for('terms')}}">Terms of Use</a></li>
+        <li><a href="{{url_for('developer')}}">Contact Us</a></li>
+      </ul>
+    </footer>
+  </body>
+</html>

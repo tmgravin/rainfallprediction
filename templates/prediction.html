@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://kit.fontawesome.com/187229e809.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rainfall prediction</title>
+  </head>
+
+  <body
+    class="bg-gray-100"
+    style="background-image: url('../static/images/rain.jpg')"
+  >
+  <nav class="flex w-full bg-transparent px-20 py-4 justify-between">
+<a href="{{ url_for('home') }}"
+        ><h1 class="text-2xl font-medium text-white">Rainfall Prediction</h1></a
+      >
+      <ul class="flex space-x-6 justify-end text-teal-1000">
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('home') }}">Home</a>
+        </li>
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('about') }}">About</a>
+        </li>
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('developer') }}">Developers</a>
+        </li>
+        {% if 'email' not in session %}
+        <button
+          class="login-button mx-2 cursor-pointer text-white bg-cyan-500 px-4 py-1 rounded-2xl hover:text-white hover:bg-cyan-700"
+        >
+          <a href="{{ url_for('login')}}">Login</a>
+        </button>
+        {% else %}
+
+        <button
+          class="logout-button mx-2 cursor-pointer text-white bg-cyan-500 px-4 py-1 rounded-2xl hover:text-white hover:bg-cyan-700"
+        >
+          <a href="{{ url_for('logout')}}">Logout</a>
+        </button>
+
+        {% endif %}
+      </ul>
+    </nav>
+    <h1 class="text-3xl font-bold text-cyan-400 text-center my-3">
+      Make Prediction
+    </h1>
+    <form
+      method="post"
+      class="grid grid-cols-3 px-4 my-10 max-w-3xl mx-auto space-y-6"
+    >
+      <div class="my-2">
+        <label for="date" class="block font-medium text-white">Date</label>
+        <input
+          type="date"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="date"
+          name="date"
+        />
+      </div>
+      <div class="my-2">
+        <label for="mintemp" class="block font-medium text-white"
+          >Minimum Temperature</label
+        >
+        <input
+        required  
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="mintemp"
+          name="mintemp"
+        />
+      </div>
+      <div class="my-2">
+        <label for="maxtemp" class="block font-medium text-white"
+          >Maximum Temperature</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="maxtemp"
+          name="maxtemp"
+        />
+      </div>
+      <div class="my-2">
+        <label for="rainfall" class="block font-medium text-white"
+          >Rainfall</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="rainfall"
+          name="rainfall"
+        />
+      </div>
+      <div class="my-2">
+        <label for="evaporation" class="block font-medium text-white"
+          >Evaporation</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="evaporation"
+          name="evaporation"
+        />
+      </div>
+      <div class="my-2">
+        <label for="sunshine" class="block font-medium text-white"
+          >Sunshine</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="sunshine"
+          name="sunshine"
+        />
+      </div>
+      <div class="my-2">
+        <label for="windgustspeed" class="block font-medium text-white"
+          >Wind Gust Speed</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="windgustspeed"
+          name="windgustspeed"
+        />
+      </div>
+      <div class="my-2">
+        <label for="windspeed9am" class="block font-medium text-white"
+          >Windspeed9am</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="windspeed9am"
+          name="windspeed9am"
+        />
+      </div>
+      <div class="my-2">
+        <label for="windspeed3pm" class="block font-medium text-white"
+          >Windspeed3pm</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="windspeed3pm"
+          name="windspeed3pm"
+        />
+      </div>
+      <div class="my-2">
+        <label for="humidity9am" class="block font-medium text-white"
+          >Humidity9am</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="humidity9am"
+          name="humidity9am"
+        />
+      </div>
+      <div class="my-2">
+        <label for="humidity3pm" class="block font-medium text-white"
+          >Humidity3pm</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="humidity3pm"
+          name="humidity3pm"
+        />
+      </div>
+      <div class="my-2">
+        <label for="pressure9am" class="block font-medium text-white"
+          >Pressure9am</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="pressure9am"
+          name="pressure9am"
+        />
+      </div>
+      <div class="my-2">
+        <label for="pressure3pm" class="block font-medium text-white"
+          >Pressure3pm</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="pressure3pm"
+          name="pressure3pm"
+        />
+      </div>
+      <div class="my-2">
+        <label for="temp9am" class="block font-medium text-white"
+          >Temp9am</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="temp9am"
+          name="temp9am"
+        />
+      </div>
+      <div class="my-2">
+        <label for="temp3pm" class="block font-medium text-white"
+          >Temp3pm</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="temp3pm"
+          name="temp3pm"
+        />
+      </div>
+      <div class="my-2">
+        <label for="cloud9am" class="block font-medium text-white"
+          >Cloud9am</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="cloud9am"
+          name="cloud9am"
+        />
+      </div>
+      <div class="my-2">
+        <label for="cloud3pm" class="block font-medium text-white"
+          >Cloud3pm</label
+        >
+        <input
+          type="text"
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="cloud3pm"
+          name="cloud3pm"
+        />
+      </div>
+      <div class="my-2">
+        <label for="location" class="block font-medium text-white"
+          >Location</label
+        >
+        <select class="location" name="location">
+          <option selected>Select Location</option>
+          <option value="24">Adelaide</option>
+          <option value="7">Albany</option>
+          <option value="30">Albury</option>
+          <option value="46">AliceSprings</option>
+          <option value="33">BadgerysCreek</option>
+          <option value="14">Ballarat</option>
+          <option value="36">Bendigo</option>
+          <option value="21">Brisbane</option>
+          <option value="2">Cairns</option>
+          <option value="43">Cobar</option>
+          <option value="9">CoffsHarbour</option>
+          <option value="4">Dartmoor</option>
+          <option value="11">Darwin</option>
+          <option value="15">GoldCoast</option>
+          <option value="17">Hobart</option>
+          <option value="45">Katherine</option>
+          <option value="23">Launceston</option>
+          <option value="28">Melbourne</option>
+          <option value="25">Melbourne Airport</option>
+          <option value="44">Mildura</option>
+          <option value="42">Moree</option>
+          <option value="5">MountGambier</option>
+          <option value="12">MountGinini</option>
+          <option value="19">Newcastle</option>
+          <option value="47">Nhil</option>
+          <option value="13">NorahHead</option>
+          <option value="6">NorfolkIsland</option>
+          <option value="32">Nuriootpa</option>
+          <option value="40">PearceRAAF</option>
+          <option value="31">Penrith</option>
+          <option value="26">Perth</option>
+          <option value="35">Perth Airport</option>
+          <option value="1">Portland</option>
+          <option value="37">Richmond</option>
+          <option value="27">Sale</option>
+          <option value="41">Salmon Gums</option>
+          <option value="10">Sydney</option>
+          <option value="16">Sydney Airport</option>
+          <option value="39">Townsville</option>
+          <option value="34">Tuggeranong</option>
+          <option value="49">Uluru</option>
+          <option value="38">WaggaWagga</option>
+          <option value="3">Walpole</option>
+          <option value="18">Watsonia</option>
+          <option value="22">William Town</option>
+          <option value="8">Witchcliffe</option>
+          <option value="20">Wollongong</option>
+          <option value="48">Woomera</option>
+        </select>
+      </div>
+
+      <div class="my-2">
+        <label for="winddir9am" class="block font-medium text-white"
+          >Winddir9am</label
+        >
+        <select
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="winddir9am"
+          name="winddir9am"
+        >
+          <option selected>Select Wind Direction at 9am</option>
+          <option value="1">N</option>
+          <option value="5">W</option>
+          <option value="10">S</option>
+          <option value="15">E</option>
+          <option value="2">NW</option>
+          <option value="9">NE</option>
+          <option value="7">SW</option>
+          <option value="13">SE</option>
+          <option value="0">NNW</option>
+          <option value="3">NNE</option>
+          <option value="8">SSW</option>
+          <option value="11">SSE</option>
+          <option value="4">WNW</option>
+          <option value="6">WSW</option>
+          <option value="12">ENE</option>
+          <option value="14">ESE</option>
+        </select>
+      </div>
+
+      <div class="my-2">
+        <label for="winddir3pm" class="block font-medium text-white"
+          >Winddir3pm</label
+        >
+        <select
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="winddir3pm"
+          name="winddir3pm"
+        >
+          <option selected>Select Wind Direction at 3pm</option>
+          <option value="2">N</option>
+          <option value="4">W</option>
+          <option value="8">S</option>
+          <option value="14">E</option>
+          <option value="0">NW</option>
+          <option value="11">NE</option>
+          <option value="9">SW</option>
+          <option value="10">SE</option>
+          <option value="1">NNW</option>
+          <option value="5">NNE</option>
+          <option value="7">SSW</option>
+          <option value="12">SSE</option>
+          <option value="3">WNW</option>
+          <option value="6">WSW</option>
+          <option value="13">ENE</option>
+          <option value="15">ESE</option>
+        </select>
+      </div>
+
+
+      <div class="my-2">
+        <label for="windgustdir" class="block font-medium text-white"
+          >Windgustdir</label
+        >
+        <select
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="windgustdir"
+          name="windgustdir"
+        >
+        <option selected>Select Wind Gust Direction</option>
+                            <option value= 3>N</option>
+                            <option value= 4>W</option>
+                            <option value= 7>S</option>
+                            <option value= 15>E</option>
+                            <option value= 1>NW</option>
+                            <option value= 11>NE</option>
+                            <option value= 9>SW</option>
+                            <option value= 12>SE</option>
+                            <option value= 0>NNW</option>
+                            <option value= 6>NNE</option>
+                            <option value= 8>SSW</option>
+                            <option value= 10>SSE</option>
+                            <option value= 2>WNW</option>
+                            <option value= 5>WSW</option>
+                            <option value= 14>ENE</option>
+                            <option value= 13>ESE</option>
+                        </select>
+
+                        <div class="my-2">
+        <label for="raintoday" class="block font-medium text-white"
+          >Raintoday</label
+        >
+        <select
+          class="border border-blue-500 block py-2 px-4 rounded hover:bg-gray-400"
+          id="raintoday"
+          name="raintoday"
+        >
+          <option selected>Did it rain today?</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+          </select>
+          </div>
+
+      <div class="pl-40 button py-4">
+        <button 
+          class="bg-cyan-400 px-6 h-10 hover:bg-cyan-700 hover:text-white border-2 rounded-3xl"
+        >
+          Predict
+        </button>
+      </div>
+    </form>
+  </div>
+    
+  
+  <footer
+      class="bg-gray-900 text-white py-4 px-10 flex justify-between items-center"
+    >
+      <p class="text-sm">&copy; 2023 Rainfall Prediction</p>
+      <ul class="flex space-x-4">
+        <li><a href="{{url_for('terms')}}">Terms of Use</a></li>
+        <li><a href="{{url_for('developer')}}">Contact Us</a></li>
+      </ul>
+    </footer>
+    </body>
+</html>

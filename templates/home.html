@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rainfall prediction</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      video {
+        top: 50%;
+        position: absolute;
+        left: 50%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+
+        object-fit: cover;
+        min-width: 100%;
+        min-height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <video autoplay loop muted>
+      <source src="../static/images/rainfallvideo.mp4" type="video/mp4" />
+    </video>
+    <nav class="flex w-full bg-transparent px-20 py-4 justify-between">
+      <h1 class="text-2xl font-medium text-white">Rainfall Prediction</h1>
+
+      <ul class="flex space-x-6 justify-end text-teal-1000">
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('home') }}">Home</a>
+        </li>
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('about') }}">About</a>
+        </li>
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('developer') }}">Developers</a>
+        </li>
+        {% if 'email' not in session %}
+        <button
+          class="login-button mx-2 cursor-pointer text-white bg-cyan-500 px-4 py-1 rounded-2xl hover:text-white hover:bg-cyan-700"
+        >
+          <a href="{{ url_for('login')}}">Login</a>
+        </button>
+        {% else %}
+
+        <button
+          class="logout-button mx-2 cursor-pointer text-white bg-cyan-500 px-4 py-1 rounded-2xl hover:text-white hover:bg-cyan-700"
+        >
+          <a href="{{ url_for('logout')}}">Logout</a>
+        </button>
+
+        {% endif %}
+      </ul>
+    </nav>
+    <p class="text-white mx-20">Welcome, {{ session['username'] }}</p>
+    <header class="flex items-center">
+      <div class="pl-9 py-40">
+        <div class="text-5xl animate-pulse font-serif font-bold text-cyan-400">
+          WHEN IT<br />
+          WILL<br /><span class="text-green-500">RAIN? </span>
+        </div>
+        {% if 'email' in session %}
+
+        <div class="button pl-20 py-4">
+          <button
+            class="bg-cyan-400 px-6 h-10 hover:bg-cyan-700 hover:text-white border-2 rounded-3xl"
+          >
+            <a href="{{ url_for('predict')}}">Predict</a>
+          </button>
+        </div>
+        {% else %}
+        <button
+          class="bg-cyan-400 px-6 h-10 hover:bg-cyan-700 hover:text-white border-2 rounded-3xl"
+        >
+          <a href="{{ url_for('login')}}">Please login first to predict-></a>
+        </button>
+        {% endif %}
+      </div>
+    </header>
+
+    <footer
+      class="bottom-0 fixed left-0 right-0 bg-gray-900 text-white py-4 px-10 flex justify-between items-center"
+    >
+      <p class="text-sm">&copy; 2023 Rainfall Prediction</p>
+      <ul class="flex space-x-4">
+        <li><a href="{{url_for('terms')}}">Terms of Use</a></li>
+        <li><a href="{{url_for('developer')}}">Contact Us</a></li>
+      </ul>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

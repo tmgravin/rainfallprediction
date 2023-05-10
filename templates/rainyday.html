@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rainyday</title>
+    <style>
+      body {
+        background-color: #7193ff;
+      }
+      .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+        background-color: #1a202c;
+        color: #fff;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #4a5568;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="flex w-full bg-transparent px-20 py-4 justify-between">
+      <a href="{{ url_for('home') }}"
+        ><h1 class="text-2xl font-medium text-white">Rainfall Prediction</h1></a
+      >
+      <ul class="flex space-x-6 justify-end text-teal-1000">
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('home') }}">Home</a>
+        </li>
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('about') }}">About</a>
+        </li>
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('developer') }}">Developers</a>
+        </li>
+        {% if 'email' not in session %}
+        <button
+          class="login-button mx-2 cursor-pointer text-white bg-cyan-500 px-4 py-1 rounded-2xl hover:text-white hover:bg-cyan-700"
+        >
+          <a href="{{ url_for('login')}}">Login</a>
+        </button>
+        {% else %}
+
+        <button
+          class="logout-button mx-2 cursor-pointer text-white bg-cyan-500 px-4 py-1 rounded-2xl hover:text-white hover:bg-cyan-700"
+        >
+          <a href="{{ url_for('logout')}}">Logout</a>
+        </button>
+
+        {% endif %}
+      </ul>
+    </nav>
+    <div class="text-white px-10 mt-20 max-w-xl">
+      <h1
+        class="animate-pulse text-yellow-300 text-5xl font-semibold leading-normal mb-8"
+      >
+        There will<br />be rain!!!
+      </h1>
+      <p class="text-lg mb-4">
+        If you are going outside, get your umbrella ready. <br />
+        Don't forget to take your raincoat and boots. <br />
+        <br />
+        If you're looking for things to do, why not try one of these activities:
+      </p>
+      <ul class="list-disc list-inside mb-8">
+        <li>Bake something delicious</li>
+        <li>Movie Marathon</li>
+        <li>Play card games</li>
+        <li>Read some books</li>
+        <li>Listen to the musics</li>
+      </ul>
+      <a
+        target="_blank"
+        href="https://www.verywellfamily.com/fun-rainy-day-activities-7090451"
+        class="btn"
+        >Find More Activities</a
+      >
+    </div>
+    <div class="py-10">
+      <img
+        src="https://64.media.tumblr.com/tumblr_la56txJO5y1qe6mn3o1_400.gifv"
+        class="w-full xl:w-1/2 xl:absolute bottom-0 right-20"
+      />
+    </div>
+  </body>
+</html>

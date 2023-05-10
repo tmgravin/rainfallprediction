@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rainfall prediction</title>
+  </head>
+  <body class="bg-black">
+    <nav class="fixed flex w-full bg-transparent px-20 py-4 justify-between">
+      <a href="{{ url_for('home') }}"
+        ><h1 class="text-2xl font-medium text-white">Rainfall Prediction</h1></a
+      >
+      <ul class="flex space-x-6 justify-end text-teal-1000">
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('home') }}">Home</a>
+        </li>
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('about') }}">About</a>
+        </li>
+        <li class="mx-2 cursor-pointer text-white hover:text-cyan-500">
+          <a href="{{ url_for('developer') }}">Developers</a>
+        </li>
+        {% if 'email' not in session %}
+        <button
+          class="login-button mx-2 cursor-pointer text-white bg-cyan-500 px-4 py-1 rounded-2xl hover:text-white hover:bg-cyan-700"
+        >
+          <a href="{{ url_for('login')}}">Login</a>
+        </button>
+        {% else %}
+        <button
+          class="logout-button mx-2 cursor-pointer text-white bg-cyan-500 px-4 py-1 rounded-2xl hover:text-white hover:bg-cyan-700"
+        >
+          <a href="{{ url_for('logout')}}">Logout</a>
+        </button>
+        {% endif %}
+      </ul>
+    </nav>
+    <p class="text-white mx-20">{{ session['username'] }}</p>
+
+    <header class="py-24 flex justify-between items-center">
+      <div class="w-2/6 pl-12">
+        <img src="../static/images/aboutrainfall.jpg" />
+      </div>
+      <div>
+        <p class="pr-40 text-1xl text-slate-500">
+          <span class="text-3xl text-sky-400">Rainfall prediction </span> is
+          necessary.Rainfall prediction is <br />
+          the process of using mathemetical models and statistical <br />
+          techniques to forecast the amount of precipitation that will
+          <br />
+          fall in a given area over a specific period of time.<br />
+          For this we use
+          <span class="text-3xl text-sky-400">Random Forest.</span><br />
+          (machine learning model).
+        </p>
+        <br />
+        <hr />
+        <br />
+        <p class="pr-40 text-2xl text-slate-500">
+          Using this site, <br />
+          You can <span class="text-sky-400">predict</span> in which places of
+          Australia <br />
+          it will rain on following day<br />by giving some data values to it
+        </p>
+      </div>
+    </header>
+    <footer
+      class="bottom-0 fixed left-0 right-0 bg-gray-900 text-white py-4 px-10 flex justify-between items-center"
+    >
+      <p class="text-sm">&copy; 2023 Rainfall Prediction</p>
+      <ul class="flex space-x-4">
+        <li><a href="{{url_for('terms')}}">Terms of Use</a></li>
+        <li><a href="{{url_for('developer')}}">Contact Us</a></li>
+      </ul>
+    </footer>
+  </body>
+</html>
